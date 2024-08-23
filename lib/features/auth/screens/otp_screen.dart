@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/core/common/loader.dart';
 import 'package:shop_app/core/utils/utils.dart';
 import 'package:shop_app/features/home/screens/home_page.dart';
@@ -111,11 +112,21 @@ class _OtpScreenState extends State<OtpScreen> {
                         });
                         try {
                           final cred = PhoneAuthProvider.credential(
+
                               verificationId: widget.verificationId,
                               smsCode: otpController.text);
 
-                          await FirebaseAuth.instance
+                              print(cred);
+
+                         final loggedInData= await FirebaseAuth.instance
                               .signInWithCredential(cred);
+                              print(loggedInData.additionalUserInfo?.isNewUser);
+
+                               final spfTwo =   await SharedPreferences.getInstance();
+                           spfTwo.setBool('isNewUser', loggedInData.additionalUserInfo?.isNewUser ?? false);
+
+                           final spf =   await SharedPreferences.getInstance();
+                           spf.setBool('loggedIn', true);
 
                           Navigator.push(
                             // ignore: use_build_context_synchronously

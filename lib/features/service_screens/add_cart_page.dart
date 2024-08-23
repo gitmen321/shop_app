@@ -154,8 +154,9 @@ class _AddCartPageState extends State<AddCartPage> {
           },
         ),
       ),
-      bottomNavigationBar:
-      ///////////////////////////////////// 
+      bottomNavigationBar: cartProvider!.items.isEmpty ? SizedBox()
+      :
+      
       
        Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
