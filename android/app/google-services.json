@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1001076967261",
+    "project_id": "footcollections-ede08",
+    "storage_bucket": "footcollections-ede08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001076967261:android:1c2b9d77f4e48d95b68ab4",
+        "android_client_info": {
+          "package_name": "com.example.shop_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb0bzdURbg68cvZHYDrcudgoJOuaDW_aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001076967261:android:c341893506221188b68ab4",
+        "android_client_info": {
+          "package_name": "com.shoapp.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb0bzdURbg68cvZHYDrcudgoJOuaDW_aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
