@@ -10,11 +10,11 @@ class CartProvider with ChangeNotifier {
   
 
   void addItem(String productId, String title, String company, double price, int size, String imageUrl) {
-    // Check if item already exists in the cart
-    int existingIndex = _items.indexWhere((item) => item.id == productId && item.size == size);
+    
+    int existingIndex = _items.indexWhere((item) => item.id == productId && item.size == size); 
 
     if (existingIndex >= 0) {
-      // If item exists, update the quantity
+      
       _items[existingIndex] = CartItem(
         id: _items[existingIndex].id,
         title: _items[existingIndex].title,
@@ -25,7 +25,7 @@ class CartProvider with ChangeNotifier {
         imageUrl: _items[existingIndex].imageUrl,
       );
     } else {
-      // If item doesn't exist, add it to the cart
+      
       _items.add(CartItem(
         id: productId,
         title: title,
@@ -40,8 +40,8 @@ class CartProvider with ChangeNotifier {
   }
 
   
-  void removeItem(String productId, int size) {
-    _items.removeWhere((item) => item.id == productId && item.size == size);
+  void removeItem(String productId, double price) {
+    _items.removeWhere((item) => item.id == productId && item.price == price);
     notifyListeners();
   }
 

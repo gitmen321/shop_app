@@ -3,6 +3,9 @@ import 'package:shop_app/features/products_feed/products_list.dart';
 import 'package:shop_app/features/service_screens/add_cart_page.dart';
 import 'package:shop_app/features/service_screens/wish_list.dart';
 
+
+
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -11,12 +14,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   
 
   int currentPage = 0;
-  List<Widget> pages =  [const ProductsList(),WishListProducts(), const AddCartPage()];
+  List<Widget> pages =  [const ProductsList(),const WishListProducts(), const AddCartPage()];
+  
 
-  @override
+  
   
   @override
   Widget build(BuildContext context) {

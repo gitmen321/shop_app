@@ -4,14 +4,15 @@ import 'package:shop_app/models/saved_items.dart';
 
 class SavedProvider with ChangeNotifier {
 
-  List<SavedItems> _saved = [];
+  final List<SavedItems> _saved = [];
+
 
   List<SavedItems> get saved {
     return [..._saved];
   }
   
   void addSaved(String productId, String title, String company, double price, String imageUrl) {
-    // Check if item already exists in the cart
+    
     int existingIndex = _saved.indexWhere((item) => item.id == productId);
 
     if (existingIndex == -1) {
@@ -26,10 +27,16 @@ class SavedProvider with ChangeNotifier {
     } else {
 
       _saved.remove(_saved[existingIndex]);
-      // If item doesn't exist, add it to the cart
+      
       
     }
     notifyListeners();
   }
+  void removeSaved(Map<String, Object> productId) {
+    _saved.removeWhere((item) => item.id == productId);
+    notifyListeners();
+}
+
+
 
 }

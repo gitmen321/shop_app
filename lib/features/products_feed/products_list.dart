@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/core/common/search_field.dart';
-import 'package:shop_app/features/auth/screens/login_screen.dart';
+import 'package:shop_app/features/scratchcard/scratch_card.dart';
 import 'package:shop_app/models/globalvariable.dart';
 import 'package:shop_app/features/products_feed/productcard.dart';
 import 'package:shop_app/features/service_screens/products_details_page.dart';
@@ -18,7 +17,16 @@ class ProductsList extends StatefulWidget {
 
 class _ProductsListState extends State<ProductsList> {
   final List<String> filters = const [
-    "All", "Addidas", "Nike", "Bata", "Puma", "Reebok", "New balance", "Skechers", "Woodland", "Vans"
+    "All",
+    "Addidas",
+    "Nike",
+    "Bata",
+    "Puma",
+    "Reebok",
+    "New balance",
+    "Skechers",
+    "Woodland",
+    "Vans"
   ];
 
   final List<IconData> filterIcons = [
@@ -29,13 +37,13 @@ class _ProductsListState extends State<ProductsList> {
     SimpleIcons.puma,
     SimpleIcons.reebok,
     SimpleIcons.newbalance,
-     SimpleIcons.puma,
+    SimpleIcons.puma,
     SimpleIcons.reebok,
     SimpleIcons.newbalance,
   ];
 
   late String selectedFilter;
-  bool isNewUser = false; // You will set this based on Firebase
+  bool isNewUser = false;
 
   @override
   void initState() {
@@ -48,7 +56,8 @@ class _ProductsListState extends State<ProductsList> {
     final spf = await SharedPreferences.getInstance();
     final isNewUser = spf.getBool('isNewUser');
     if (isNewUser != null && isNewUser) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _showScratchCardDialog());
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => _showScratchCardDialog());
     }
   }
 
@@ -57,26 +66,37 @@ class _ProductsListState extends State<ProductsList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.zero,
-          content: Stack(
-            alignment: Alignment.topRight,
-            children: [
-              GestureDetector(
+            contentPadding: EdgeInsets.zero,
+            content: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 200,
+                maxHeight: 200,
+              ),
+              child: GestureDetector(
+                onTapCancel: _applyScratchCardReward,
                 onTap: _applyScratchCardReward,
-                child: Image.asset(
-                  'assets/images/pngegg.png', // Replace with your scratch card image path
-                  fit: BoxFit.cover,
+                child: ScratchCard(
+                  overlayColor: Colors.grey,
+                  strokeWidth: 20.0,
+                  hiddenChild: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.black,
+                    ),
+                    constraints:
+                        const BoxConstraints(maxHeight: 300, maxWidth: 300),
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'You Won!',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
-        );
+            ));
       },
     );
   }
@@ -84,13 +104,13 @@ class _ProductsListState extends State<ProductsList> {
   void _applyScratchCardReward() {
     setState(() {
       final randomIndex = Random().nextInt(products.length);
-      products[randomIndex]['price'] = 0.0; // Set the price of the selected product to zero
+      products[randomIndex]['price'] = 0.0;
     });
 
-    Navigator.of(context).pop(); // Close the dialog
+    Navigator.of(context).pop();
 
     ScaffoldMessenger.of(context).showSnackBar(
-     const  SnackBar(
+      const SnackBar(
         content: Text('Congratulations! You got a product for free!'),
       ),
     );
@@ -103,18 +123,11 @@ class _ProductsListState extends State<ProductsList> {
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () async {
-                  final spf = await SharedPreferences.getInstance();
-                  spf.setBool('loggedIn', false);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    'Foot\nFitCollection',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  'Foot\nFitCollection',
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               const Expanded(
@@ -148,15 +161,21 @@ class _ProductsListState extends State<ProductsList> {
                         children: [
                           Icon(
                             icon,
-                            color: selectedFilter == filter ? Colors.white : Theme.of(context).colorScheme.primary,
+                            color: selectedFilter == filter
+                                ? Colors.white
+                                : Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(width: 8),
                           Text(filter),
                         ],
                       ),
                       labelStyle: selectedFilter == filter
-                          ? const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)
-                          : const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          ? const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)
+                          : const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                       padding: const EdgeInsets.all(14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -176,7 +195,8 @@ class _ProductsListState extends State<ProductsList> {
                 if (constraints.maxWidth > 1080) {
                   return GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1.75,
                     ),
@@ -185,7 +205,8 @@ class _ProductsListState extends State<ProductsList> {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProductsDetailsPage(product: product)));
+                              builder: (context) =>
+                                  ProductsDetailsPage(product: product)));
                         },
                         child: ProductCard(
                           id: product['id'] as String,
@@ -209,7 +230,8 @@ class _ProductsListState extends State<ProductsList> {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProductsDetailsPage(product: product)));
+                              builder: (context) =>
+                                  ProductsDetailsPage(product: product)));
                         },
                         child: ProductCard(
                           id: product['id'] as String,
@@ -217,9 +239,8 @@ class _ProductsListState extends State<ProductsList> {
                           image: product['imageUrl'] as String,
                           price: product['price'] as double,
                           company: product['company'] as String,
-                          backgroundColor: index.isEven
-                              ? const Color.fromARGB(255, 183, 187, 189)
-                              : const Color.fromRGBO(245, 247, 249, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(245, 247, 249, 1),
                           product: product,
                         ),
                       );

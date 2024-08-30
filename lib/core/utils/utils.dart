@@ -8,11 +8,3 @@ void showSnackBar(BuildContext context, String text){
   ..showSnackBar(SnackBar(content: Text(text),),);
 }
 
-void showOtpDialogue({required BuildContext context,
-required TextEditingController codeController,
-required VoidCallback onPressed,
-} ){
-
-
-
-}

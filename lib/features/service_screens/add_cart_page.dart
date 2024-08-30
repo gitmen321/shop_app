@@ -125,7 +125,7 @@ class _AddCartPageState extends State<AddCartPage> {
                                   onPressed: () {
                                     context
                                         .read<CartProvider>()
-                                        .removeItem(cartItem.id,cartItem.price as int);
+                                        .removeItem(cartItem.id,cartItem.price, );
                                     _calculateTotal();
                                     Navigator.of(context).pop();
                                   },
@@ -154,7 +154,7 @@ class _AddCartPageState extends State<AddCartPage> {
           },
         ),
       ),
-      bottomNavigationBar: cartProvider!.items.isEmpty ? SizedBox()
+      bottomNavigationBar: cartProvider!.items.isEmpty ?const SizedBox()
       :
       
       

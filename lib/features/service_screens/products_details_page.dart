@@ -149,8 +149,10 @@ class _ProductsDetailsPageState extends State<ProductsDetailsPage> {
                       ),
                     ),
                     ElevatedButton.icon(
-                      // icon:Icons.purchas ,
-                      onPressed: () {},
+                      
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const AddCartPage(),));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         fixedSize: const Size(175, 30),

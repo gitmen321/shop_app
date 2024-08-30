@@ -28,7 +28,7 @@ FirebaseAuthMethods(this._auth);
 
           callBack();
 
-           Navigator.push(
+           Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => OtpScreen(

@@ -14,10 +14,6 @@ Future<void> generatePdfReciept({
 }) async {
   final pdf = pw.Document();
 
-  // final logo = pw.MemoryImage(
-  //   (await rootBundle.load('assets/logo.png')).buffer.asUint8List(),
-  // );
-
   pdf.addPage(
     pw.Page(
       margin: const pw.EdgeInsets.all(24),
@@ -25,11 +21,11 @@ Future<void> generatePdfReciept({
         return pw.Column(
           crossAxisAlignment: pw.CrossAxisAlignment.start,
           children: [
-            // Header Section
+          
             pw.Row(
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: [
-                // pw.Image(logo, height: 50, width: 50), // Company Logo
+                
                 pw.Column(
                   crossAxisAlignment: pw.CrossAxisAlignment.end,
                   children: [
@@ -42,19 +38,19 @@ Future<void> generatePdfReciept({
             pw.SizedBox(height: 20),
             pw.Divider(thickness: 1),
 
-            // Receipt Title
+           
             pw.Center(
               child: pw.Text('Receipt', style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold, color: PdfColors.blue)),
             ),
             pw.SizedBox(height: 16),
 
-            // Transaction Details
+            
             pw.Text('Transaction ID: $transactionId', style: pw.TextStyle(fontSize: 16)),
             pw.Text('Date of Purchase: ${purchaseDate.toLocal()}'),
             pw.SizedBox(height: 16),
             pw.Divider(thickness: 1),
 
-            // Products Section
+           
             pw.Text('Products:', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
             pw.SizedBox(height: 8),
             pw.Table(
@@ -105,7 +101,7 @@ Future<void> generatePdfReciept({
             pw.SizedBox(height: 16),
             pw.Divider(thickness: 1),
 
-            // Total Price Section
+            
             pw.Row(
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: [
@@ -115,7 +111,7 @@ Future<void> generatePdfReciept({
             ),
             pw.SizedBox(height: 20),
 
-            // Footer Section
+            
             pw.Divider(thickness: 1),
             pw.Center(
               child: pw.Text('Thank you for your purchase!', style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
@@ -130,7 +126,7 @@ Future<void> generatePdfReciept({
     ),
   );
 
-  // Get the Downloads directory
+  
   final outputDir = Directory('/storage/emulated/0/Download');
   if (!await outputDir.exists()) {
     await outputDir.create(recursive: true);
@@ -139,14 +135,14 @@ Future<void> generatePdfReciept({
   final file = File("${outputDir.path}/receipt.pdf");
   await file.writeAsBytes(await pdf.save());
 
-  // Show a Snackbar to indicate the file has been saved
+  
   ScaffoldMessenger.of(context).showSnackBar(
     const SnackBar(
       content: Text('Receipt saved to Downloads'),
     ),
   );
 
-  // Convert File to XFile and share
+  
   final xFile = XFile(file.path);
   Share.shareXFiles([xFile], text: 'Your Purchase Receipt');
 }

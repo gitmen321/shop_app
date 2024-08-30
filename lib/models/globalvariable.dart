@@ -4,7 +4,8 @@ final products = [{
   'title': 'NikeShoes',
   'price': 1500.00,
   'sizes': [8,9,10,11],
-  'imageUrl':'assets/images/shoes_3.png',
+  'imageUrl':'assets/images/pinknike.png',
+  
   'quantity' : 1,
 },
 {
@@ -13,7 +14,7 @@ final products = [{
   'title': 'Addidas Shoes',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/shoes_1.png',
+  'imageUrl':'assets/images/brownsneaker.png',
   'quantity' : 1,
 
 },
@@ -23,7 +24,7 @@ final products = [{
   'title': 'NikeShoes',
   'price': 1500.00,
   'sizes': [8,9,10,11],
-  'imageUrl':'assets/images/shoes_2.png',
+  'imageUrl':'assets/images/brownnikey.png',
   'quantity' : 1,
 
 },
@@ -33,7 +34,7 @@ final products = [{
   'title': 'AirJordan Shoes',
   'price': 1500.00,
   'sizes': [8,9,10,11],
-  'imageUrl':'assets/images/shoes_4.png',
+  'imageUrl':'assets/images/airjordan.png',
   'quantity': 1,
   
 },
@@ -43,7 +44,7 @@ final products = [{
   'title': 'Nike Shoes',
   'price': 1500.00,
   'sizes': [8,9,10,11],
-  'imageUrl':'assets/images/shoes_3.png',
+  'imageUrl':'assets/images/nikered.png',
   'quantity' : 1,
 },
 {
@@ -52,7 +53,7 @@ final products = [{
   'title': 'Addidas Shoes',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/shoes_1.png',
+  'imageUrl':'assets/images/brownsneaker.png',
   'quantity' : 1,
 },
 {
@@ -61,7 +62,7 @@ final products = [{
   'title': 'Sport Shoe',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/bluesport.png',
+  'imageUrl':'assets/images/air.png',
   'quantity' : 1,
 },
 {
@@ -70,7 +71,7 @@ final products = [{
   'title': 'Addidasshoe',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/adidasasics.png'
+  'imageUrl':'assets/images/airblack.png'
 },
 {
   'id' : '9',
@@ -78,7 +79,7 @@ final products = [{
   'title': 'Airjordan Max',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/airjordanmax.png',
+  'imageUrl':'assets/images/nikegreen.png',
   'quantity' : 1,
 },
 {
@@ -87,25 +88,25 @@ final products = [{
   'title': 'Addidas Basics',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/adidasasics.png',
+  'imageUrl':'assets/images/airblack.png',
   'quantity' : 1,
 },
 {
   'id' : '11',
-  'company':'Nike',
-  'title': 'Basketball Shoe',
+  'company':'Bata',
+  'title': 'Bata Premium',
   'price': 1500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/basketballshoe.png',
+  'imageUrl':'assets/images/batapremium.png',
   'quantity' : 1,
 },
 {
   'id' : '12',
   'company':'Nike',
-  'title': 'Nike AirMax',
+  'title': 'Nike brown',
   'price': 2500.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/nikeairmax.png',
+  'imageUrl':'assets/images/brownnikey.png',
   'quantity' : 1,
 },
 {
@@ -114,25 +115,25 @@ final products = [{
   'title': 'Green Skate',
   'price': 1800.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/greenskateshoe.png',
+  'imageUrl':'assets/images/nikegreen.png',
   'quantity' : 1,
 },
 {
   'id' : '14',
   'company':'Nike',
-  'title': 'Green Nike',
+  'title': 'Pink Nike',
   'price': 2800.00,
   'sizes': [5,6,7,8,9,10,],
-  'imageUrl':'assets/images/greennike.png',
+  'imageUrl':'assets/images/pinknike.png',
   'quantity' : 1,
 },
 {
   'id' : '15',
-  'company':'Bata',
-  'title': 'Derby shoe',
+  'company':'Puma',
+  'title': 'Converse',
   'price': 1000.00,
   'sizes': [6,7,8,9,10,11],
-  'imageUrl':'assets/images/derbyshoe.png',
+  'imageUrl':'assets/images/pumaconverse.png',
   'quantity' : 1,
 },
 {
@@ -141,16 +142,16 @@ final products = [{
   'title': 'Brownie Sport',
   'price': 3000.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/brownleathershoe.png',
+  'imageUrl':'assets/images/brownsneaker.png',
   'quantity' : 1,
 },
 {
   'id' : '17',
-  'company':'Bata',
-  'title': 'Brown Leather',
+  'company':'Nike',
+  'title': 'Red Nike',
   'price': 700.00,
   'sizes': [6,7,8,9,10,],
-  'imageUrl':'assets/images/brownleather.png',
+  'imageUrl':'assets/images/nikered.png',
   'quantity' : 1,
 },
 {
@@ -159,7 +160,7 @@ final products = [{
   'title': 'BlueSport',
   'price': 1200.00,
   'sizes': [7,8,9,],
-  'imageUrl':'assets/images/bluesport.png',
+  'imageUrl':'assets/images/air.png',
   'quantity' : 1,
 },
 {
@@ -168,7 +169,7 @@ final products = [{
   'title': 'Black running Shoe',
   'price': 4500.00,
   'sizes': [6,7,8,9],
-  'imageUrl':'assets/images/blackrunningshoe.png',
+  'imageUrl':'assets/images/airjordan.png',
   'quantity' : 1,
 },
 {
@@ -177,7 +178,7 @@ final products = [{
   'title': 'Black Leather',
   'price': 4000.00,
   'sizes': [8,9,10,],
-  'imageUrl':'assets/images/blackleather.png',
+  'imageUrl':'assets/images/airblack.png',
   'quantity' : 1,
 },
 ];

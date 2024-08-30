@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/core/statemanagement/cart_provider.dart';
 import 'package:shop_app/core/statemanagement/saved_provider.dart';
-import 'package:shop_app/features/auth/screens/splash_screen.dart';
+import 'package:shop_app/features/home/screens/home_page.dart';
+import 'package:shop_app/features/splash/splash_screen.dart';
 
 
 void main() async {
@@ -68,8 +69,7 @@ class MyApp extends StatelessWidget {
         ),
         title: 'CustomFit',
         debugShowCheckedModeBanner: false,
-        // home: ProductsDetailsPage(product: products[0],),
-        home: const Splash(),
+        home: const HomePage(),
       ),
     );
   }
