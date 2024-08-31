@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/saved_items.dart';
 
-
 class SavedProvider with ChangeNotifier {
-
   final List<SavedItems> _saved = [];
-
 
   List<SavedItems> get saved {
     return [..._saved];
   }
-  
-  void addSaved(String productId, String title, String company, double price, String imageUrl) {
-    
+
+  int addSaved(String productId, String title, String company, double price,
+      String imageUrl) {
     int existingIndex = _saved.indexWhere((item) => item.id == productId);
 
     if (existingIndex == -1) {
@@ -21,22 +18,17 @@ class SavedProvider with ChangeNotifier {
         title: title,
         company: company,
         price: price,
-       
         imageUrl: imageUrl,
       ));
     } else {
-
       _saved.remove(_saved[existingIndex]);
-      
-      
     }
     notifyListeners();
+    return existingIndex;
   }
-  void removeSaved(Map<String, Object> productId) {
+
+  void removeSaved(String productId) {
     _saved.removeWhere((item) => item.id == productId);
     notifyListeners();
-}
-
-
-
+  }
 }

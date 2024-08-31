@@ -6,7 +6,6 @@ import 'package:shop_app/core/statemanagement/saved_provider.dart';
 import 'package:shop_app/features/home/screens/home_page.dart';
 import 'package:shop_app/features/splash/splash_screen.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -69,7 +68,7 @@ class MyApp extends StatelessWidget {
         ),
         title: 'CustomFit',
         debugShowCheckedModeBanner: false,
-        home: const HomePage(),
+        home: const Splash(),
       ),
     );
   }

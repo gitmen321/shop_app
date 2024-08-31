@@ -18,7 +18,7 @@ class ProductsList extends StatefulWidget {
 class _ProductsListState extends State<ProductsList> {
   final List<String> filters = const [
     "All",
-    "Addidas",
+    "Adidas",
     "Nike",
     "Bata",
     "Puma",
@@ -116,22 +116,52 @@ class _ProductsListState extends State<ProductsList> {
     );
   }
 
+  String searchKeyWord = '';
+
   @override
   Widget build(BuildContext context) {
+    final filteredProducts = products
+        .where((product) => selectedFilter == 'All'
+            ? product['company']
+                    .toLowerCase()
+                    .contains(searchKeyWord.toLowerCase()) ||
+                product['title']
+                    .toLowerCase()
+                    .contains(searchKeyWord.toLowerCase())
+            : product['company'] == selectedFilter &&
+                product['title']
+                    .toLowerCase()
+                    .contains(searchKeyWord.toLowerCase()))
+        .toList();
+
     return SafeArea(
       child: Column(
         children: [
           Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  'Foot\nFitCollection',
-                  style: Theme.of(context).textTheme.titleLarge,
+              // Padding(
+              //   padding: const EdgeInsets.all(20),
+              //   child: Text(
+              //     'Foot\nFitCollection',
+              //     style: Theme.of(context).textTheme.titleLarge,
+              //   ),
+              // ),
+              const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Image(
+                    image: AssetImage('assets/images/app_img_logo_white.png'),
+                    color: Colors.black,
+                    width: 70,
+                    height: 70,
+                  )),
+              Expanded(
+                child: SearchField(
+                  onChanged: (value) {
+                    setState(() {
+                      searchKeyWord = value;
+                    });
+                  },
                 ),
-              ),
-              const Expanded(
-                child: SearchField(),
               ),
             ],
           ),
@@ -176,7 +206,6 @@ class _ProductsListState extends State<ProductsList> {
                               color: Colors.white)
                           : const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
-                      padding: const EdgeInsets.all(14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -194,14 +223,14 @@ class _ProductsListState extends State<ProductsList> {
               builder: (context, constraints) {
                 if (constraints.maxWidth > 1080) {
                   return GridView.builder(
-                    itemCount: products.length,
+                    itemCount: filteredProducts.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1.75,
                     ),
                     itemBuilder: (context, index) {
-                      final product = products[index];
+                      final product = filteredProducts[index];
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -224,9 +253,9 @@ class _ProductsListState extends State<ProductsList> {
                   );
                 } else {
                   return ListView.builder(
-                    itemCount: products.length,
+                    itemCount: filteredProducts.length,
                     itemBuilder: (context, index) {
-                      final product = products[index];
+                      final product = filteredProducts[index];
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

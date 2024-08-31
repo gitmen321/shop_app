@@ -38,9 +38,14 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Foot Fit',
-                style: Theme.of(context).textTheme.titleLarge,
+              // Text(
+              //   'Foot Fit',
+              //   style: Theme.of(context).textTheme.titleLarge,
+              // ),
+              Image(
+                image: AssetImage('assets/images/app_logo_white.png'),
+                width: 120,
+                height: 120,
               ),
               const Spacer(),
               Card(
@@ -88,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     height: 24,
                                   ),
                                 ),
-                            
                               ],
                             ),
                           ),

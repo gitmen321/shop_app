@@ -1,4 +1,4 @@
-final products = [{
+List<Map<String,dynamic>> products = [{
   'id' : '1',
   'company':'Nike',
   'title': 'NikeShoes',

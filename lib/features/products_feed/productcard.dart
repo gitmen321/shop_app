@@ -4,7 +4,7 @@ import 'package:shop_app/core/statemanagement/cart_provider.dart';
 import 'package:shop_app/core/statemanagement/saved_provider.dart';
 
 class ProductCard extends StatefulWidget {
-  final Map<String, Object> product;
+  final Map<String, dynamic> product;
 
   final String id;
   final String title;
@@ -27,28 +27,28 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  int? exists;
 
   void onPressed() {
-    context.read<SavedProvider>().addSaved(
-      
-      widget.product['id'] as String,
-         widget.product['title'] as String,
-         widget.product['company'] as String,
-         widget.product['price'] as double,
-         widget.product['imageUrl'] as String,
-
-
-    );
-
+    print(widget.product['id']);
+    exists = context.read<SavedProvider>().addSaved(
+          widget.product['id'] as String,
+          widget.product['title'] as String,
+          widget.product['company'] as String,
+          widget.product['price'] as double,
+          widget.product['imageUrl'] as String,
+        );
+    setState(() {});
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("Product added successfully"),
+        content: Text("Product saved"),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    print('exists');
     return Container(
       decoration: BoxDecoration(
         color: widget.backgroundColor,
@@ -65,13 +65,16 @@ class _ProductCardState extends State<ProductCard> {
               Text(
                 widget.title,
                 style: Theme.of(context).textTheme.titleMedium,
-                
               ),
-              CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                child: IconButton(
-                    onPressed: onPressed, 
-                    icon: const Icon(Icons.bookmark,color: Colors.white,),),
+              GestureDetector(
+                onTap: onPressed,
+                child: CircleAvatar(
+                  backgroundColor: Colors.black,
+                  child: Icon(
+                    exists == -1 ? Icons.bookmark : Icons.bookmark_border,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),

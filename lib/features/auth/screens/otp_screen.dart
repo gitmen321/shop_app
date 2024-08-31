@@ -6,8 +6,6 @@ import 'package:shop_app/core/common/loader.dart';
 import 'package:shop_app/core/utils/utils.dart';
 import 'package:shop_app/features/home/screens/home_page.dart';
 
-
-
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key, required this.verificationId});
   final String verificationId;
@@ -73,19 +71,18 @@ class _OtpScreenState extends State<OtpScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Expanded(
-                             child: TextField(
-                                controller: otpController,
-                                keyboardType: TextInputType.number,
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                          Expanded(
+                            child: TextField(
+                              controller: otpController,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                           ),
-                          
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(
@@ -112,24 +109,25 @@ class _OtpScreenState extends State<OtpScreen> {
                         });
                         try {
                           final cred = PhoneAuthProvider.credential(
-
                               verificationId: widget.verificationId,
                               smsCode: otpController.text);
 
-                              print(cred);
+                          print(cred);
 
-                         final loggedInData= await FirebaseAuth.instance
+                          final loggedInData = await FirebaseAuth.instance
                               .signInWithCredential(cred);
-                              print(loggedInData.additionalUserInfo?.isNewUser);
+                          print(loggedInData.additionalUserInfo?.isNewUser);
 
-                               final spfTwo =   await SharedPreferences.getInstance();
-                           spfTwo.setBool('isNewUser', loggedInData.additionalUserInfo?.isNewUser ?? false);
+                          final spfTwo = await SharedPreferences.getInstance();
+                          spfTwo.setBool(
+                              'isNewUser',
+                              loggedInData.additionalUserInfo?.isNewUser ??
+                                  false);
 
-                           final spf =   await SharedPreferences.getInstance();
-                           spf.setBool('loggedIn', true);
+                          final spf = await SharedPreferences.getInstance();
+                          spf.setBool('loggedIn', true);
 
-                          Navigator.push(
-                            
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const HomePage(),

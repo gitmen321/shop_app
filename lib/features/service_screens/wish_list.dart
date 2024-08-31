@@ -26,29 +26,30 @@ class WishListProducts extends StatelessWidget {
           itemCount: savedProvider.saved.length,
           itemBuilder: (context, index) {
             final product = products[index];
-            final wishItems = products[index];
+            final wishItems = savedProvider.saved;
 
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductsDetailsPage(product: product)));
+                      builder: (context) =>
+                          ProductsDetailsPage(product: product)));
                 },
                 child: CustomList(
-                  
-                    product: wishItems,
-                    id: wishItems['id'] as String,
-                    title: wishItems['title'] as String,
-                    image: wishItems['imageUrl'] as String,
-                    price: wishItems['price'] as double,
-                    backgroundColor: const Color.fromRGBO(245, 247, 249, 1),
-                    company: wishItems['company'] as String, onPressed: (){
-                      context.read<SavedProvider>().removeSaved(wishItems);
-
-                      
-                    },),
+                  product: wishItems,
+                  id: wishItems[index].id,
+                  title: wishItems[index].title,
+                  image: wishItems[index].imageUrl,
+                  price: wishItems[index].price,
+                  backgroundColor: const Color.fromRGBO(245, 247, 249, 1),
+                  company: wishItems[index].company,
+                  onPressed: () {
+                    context
+                        .read<SavedProvider>()
+                        .removeSaved(wishItems[index].id);
+                  },
+                ),
               ),
             );
           }),

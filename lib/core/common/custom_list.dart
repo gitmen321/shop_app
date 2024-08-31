@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/saved_items.dart';
 
 class CustomList extends StatefulWidget {
-  final Map<String, Object> product;
+  final List<SavedItems> product;
   final String id;
   final String title;
   final String image;
