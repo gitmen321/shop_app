@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/core/statemanagement/cart_provider.dart';
 import 'package:shop_app/core/statemanagement/saved_provider.dart';
 
 class ProductCard extends StatefulWidget {
@@ -30,7 +29,7 @@ class _ProductCardState extends State<ProductCard> {
   int? exists;
 
   void onPressed() {
-    print(widget.product['id']);
+    
     exists = context.read<SavedProvider>().addSaved(
           widget.product['id'] as String,
           widget.product['title'] as String,
@@ -48,7 +47,7 @@ class _ProductCardState extends State<ProductCard> {
 
   @override
   Widget build(BuildContext context) {
-    print('exists');
+    
     return Container(
       decoration: BoxDecoration(
         color: widget.backgroundColor,

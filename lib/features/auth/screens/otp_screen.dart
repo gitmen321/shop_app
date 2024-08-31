@@ -112,11 +112,11 @@ class _OtpScreenState extends State<OtpScreen> {
                               verificationId: widget.verificationId,
                               smsCode: otpController.text);
 
-                          print(cred);
+                          
 
                           final loggedInData = await FirebaseAuth.instance
                               .signInWithCredential(cred);
-                          print(loggedInData.additionalUserInfo?.isNewUser);
+                          
 
                           final spfTwo = await SharedPreferences.getInstance();
                           spfTwo.setBool(
